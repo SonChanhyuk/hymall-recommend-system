@@ -1,0 +1,245 @@
+::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  margin: 0px;
+  width: 100%;
+  height: 100%
+}
+
+.search {
+  display: flex;
+  height: 85px;
+  align-items: center;
+  justify-content: center;
+}
+
+input {
+  width: 80%;
+  border: 1px solid #bbb;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 14px;
+}
+
+.layer_1 {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.goods_layer {
+  margin:30px;
+  width:80%;
+  height:100vw;
+  background: #dcdcdc;
+  margin-bottom: 0px;
+  margin-top:0px;
+  overflow: auto;
+}
+
+.goods_img {
+  display: flex;
+  flex-wrap:wrap;
+  line-height: 0;
+}
+
+.goods_img > a > img {
+  display: flex;
+  width: 20vw;
+  height: 20vw;
+}
+
+.Exp1{
+  height: 80px;
+  margin-top: 20px;
+  margin-left: 30px;
+}
+
+.Exp1 > .HY > span {
+  color: #ffc205;
+}
+
+.g1 {
+  font-size: 12px;
+  font-family: "Lora", serif;
+  font-weight: 700;
+}
+
+.HY {
+  font-size: 25px;
+  font-family: "Lora", serif;
+  font-weight: 700;
+}
+
+.goods {
+  font-size: 20px;
+  font-family: "Lora", serif;
+  font-weight: 400;
+}
+
+.layer_2 {
+  display:flex;
+  margin-bottom: 0px;
+  justify-content: end;
+}
+
+.reco_layer {
+  display:flex;
+  margin-top: 0px;
+  width:80%;
+  height: 40vw;
+  background: #dcdcdc;
+  overflow: auto;
+}
+
+.reco_img {
+  display: flex;
+  flex-wrap:wrap;
+  line-height: 0;
+}
+
+.reco_img > a > img {
+  width: 20vw;
+  height: 20vw;
+}
+
+.g2 {
+  font-size: 12px;
+  font-family: "Lora", serif;
+  font-weight: 700;
+  display: flex;
+  justify-content: end;
+  align-items: end;
+  margin-right: 45px;
+  padding-bottom: 10px;
+  height: 20px;
+}
+
+.reco {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  font-family: "Lora", serif;
+  font-weight: 400;
+  font-size: 20px;
+  display: flex;
+  justify-content: end;
+  align-content: end;
+  margin-right: 20px;
+}
+
+.text {
+  display: flex;
+  margin-top: 35px;
+  font-family: "Lora", serif;
+  font-weight: 400;
+  font-size: 14px;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+        .background {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100vh;
+          background-color: rgba(0, 0, 0, 0.3);
+          z-index: -1;
+          opacity: 0;
+        }
+
+        .window {
+          position: relative;
+          width: 100%;
+          height: 100%;
+        }
+
+        .popup {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background-color: #ffffff;
+          box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
+          width: 350px;
+          transform: translate(-50%, -40%);
+        }
+        
+        .open_popup {
+          opacity: 1;
+          z-index: 1000;
+          transition: all .5s;
+        }
+
+        .open_popup .popup {
+          transform: translate(-50%, -50%);
+          transition: all .5s;
+        }
+
+        .close {
+          display: flex;
+          margin-top: 3px;
+          margin-left:240px ;
+        }
+      
+        .pop_top_bar {
+          height: 30px;
+        }
+
+        .pop_logo {
+          display:flex;
+          margin-left:10px;
+          margin-top:3px;
+        }
+
+        .pop_logo > span {
+          color: #ffc205;
+        }
+
+        .pop_img_1 > a > img {
+          width:100%;
+          height: 100%;
+        }
+      
+        .pop_Exp {
+          margin-left: 5px;
+          margin-bottom: 5px;
+        }
+      
+        .pop_Exp > .brand {
+          font-size:1rem;
+          text-align:left;
+        }
+
+        .pop_Exp > .pro {
+          font-size:1.2rem;
+          text-align:left;
+        }
+
+        .pop_Exp > .price {
+          font-size:2rem;
+          text-align:left;
+        }
+
+        .pop_img_2 {
+          display: flex;
+          background-color: white;
+          height: 150px;
+          overflow: auto;
+          flex-wrap:wrap;
+          line-height: 0;
+          justify-content: center;
+        }
+
+        .pop_img_2 > a > img {
+          border-radius: 7px;
+          width: 20vw;
+          height: 20vw;
+        }
+
+        footer {
+          margin-top:30px;
+        }
+<> @import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;500;700&display=swap');

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HY-mall</title>
+    <link rel="stylesheet" href="HY-MALL_Style.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  </head>
+    
+    <!--검색바 구현 시작-->
+    <header class="search"><input type="text"/></header>   
+    </div>
+    <!--검색바 구현 끝-->
+
+    <!--상품 리스트 구현 시작-->
+    <section class="layer_1" >
+      <div class="goods_layer" id ="goods_layer">
+
+      <div class="goods_img">
+
+
+    </div>
+  </div>
+  </section>
+  <!--상품 리스트 구현 끝-->
+
+  <!--상품 리스트 설명 시작-->
+  <div class="Exp1">
+    <div class="g1">01</div>
+    <div class="HY"><span>HY</span>-MALL</div>
+    <span class="goods">Choose a product!</span>
+  </div>
+  <!--상품 리스트 설명 끝-->
+
+  <!--추천상품 설명 시작_1-->
+  <div class="g2">02</div>
+  <!--추천상품 설명 끝_1-->
+
+  <!--추천 상품 시작-->
+    <section class="layer_2" >
+    
+    <div class="reco_layer" id="reco_layer">
+  
+      <div class="reco_img">
+
+      
+    </div>
+  </div>
+
+  <!--추천상품 설명 시작_2-->
+  <div class="reco">reco</div>
+  <!--추천상품 설명 끝_2-->
+  
+  </section>
+  <!--추천 상품 끝-->
+
+    <!--하단바 텍스트 시작-->
+    <footer class="text">
+    <div>To provide a better recommendation service so that you can enjoy a pleasant shopping experience</div>
+    </footer>
+    <!--하단바 텍스트 끝-->
+
+    <!--팝업창 시작-->
+    <div class="open_popup"></div>
+      
+      <div class="background">
+        <div class="window">
+          <div class="popup">
+
+            <header class="pop_top_bar">
+            <div class="pop_logo"><span>HY</span>-MALL
+            <button class="close">x</button>
+            </div>
+            </header>
+
+            <section class="pop_img_1" id="popup_layer_1">
+              <a href="#"><img src="사진1.jpg" alt=""></a>
+            </section>
+
+            <div class="pop_Exp">
+              <div class="brand">Brand name</div>
+              <div class="pro">product name</div>
+              <div class="price">30$</div>
+            </div>
+
+            <section class="pop_img_2" id="popup_layer">
+              <a href="#"><img  src="사진1.jpg" alt="" /></a>
+              <a href="#"><img  src="사진2.jpg" alt="" /></a>
+              <a href="#"><img  src="사진3.jpg" alt="" /></a>
+              <a href="#"><img  src="사진4.jpg" alt="" /></a>
+              <a href="#"><img  src="사진5.jpg" alt="" /></a>
+
+              <a href="#"><img  src="사진1.jpg" alt="" /></a>
+              <a href="#"><img  src="사진2.jpg" alt="" /></a>
+              <a href="#"><img  src="사진3.jpg" alt="" /></a>
+              <a href="#"><img  src="사진4.jpg" alt="" /></a>
+              <a href="#"><img  src="사진5.jpg" alt="" /></a>
+              
+              <a href="#"><img  src="사진1.jpg" alt="" /></a>
+              <a href="#"><img  src="사진2.jpg" alt="" /></a>
+              <a href="#"><img  src="사진3.jpg" alt="" /></a>
+              <a href="#"><img  src="사진4.jpg" alt="" /></a>
+              <a href="#"><img  src="사진5.jpg" alt="" /></a>
+              
+              <a href="#"><img  src="사진1.jpg" alt="" /></a>
+              <a href="#"><img  src="사진2.jpg" alt="" /></a>
+              <a href="#"><img  src="사진3.jpg" alt="" /></a>
+              <a href="#"><img  src="사진4.jpg" alt="" /></a>
+              <a href="#"><img  src="사진5.jpg" alt="" /></a>
+              
+            </section>
+            <!--팝업창 하단 부분 여백 시작-->
+            <footer></footer>
+            <!--팝업창 하단 부분 여백 끝-->
+        </div>
+      </div>
+    </div>
+    <!--팝업창 끝-->
+    
+    <script>
+      /*팝업창 스크립트 시작*/
+      function open_popup () {
+        document.querySelector(".background").className = "background open_popup";
+      }
+      
+      function close () { 
+        document.querySelector(".background").className = "background";
+      }
+      
+      document.querySelector(".open_popup").addEventListener('click', open_popup);
+      document.querySelector(".close").addEventListener('click', close);
+      /*팝업창 스크립트 끝*/
+
+
+//http://127.0.0.1:8000/
+//http://127.0.0.1:8000/retrieval_api
+//http://127.0.0.1:8000/reco_api
+
+function shuffleArray(inputArray){
+    inputArray.sort(()=> Math.random() - 0.5);
+}
+
+var _history = [];
+
+$(document).ready(function() {
+    api_main_contents();
+});
+
+function api_main_contents() {
+    var searchHost = ''; //
+    $.ajax({
+        url: searchHost,
+        type: 'GET',
+        async: true,
+        timeout: 5000,
+        contentType: 'application/json',
+
+        beforeSend: function() {
+            console.log('trying... ' + searchHost);
+        },
+        success: function(data) {
+            var hits = data.hits.hits;
+            for (var i = 0; i < hits.length; i++) {
+                var item_no = hits[i].item_no_idx;
+                var image_name = hits[i].image_name;
+                $("#goods_layer").append("<a href='javascript:add_reco(\"" + item_no + "\", \"" + image_name + "\" )'><img style='width: 20vw; height: 20vw;' src='./commerce_imgs/" + image_name + ".jpg'></a>");
+
+            }
+        },
+        error: function(request, status, error) {
+            alert('code:' + request.status + '\nerror:' + error);
+        },
+        fail: function() {
+            alert('인터넷 연결 상태를 확인해주세요.');
+        }
+    });
+}
+
+function shuffleArray(inputArray){
+inputArray.sort(()=> Math.random() - 0.5);
+}
+
+
+function add_reco(item_no_idx, img_url) {
+  _history.unshift(item_no_idx);
+
+  // item_no 리스트에 클릭한 상품의 item_no를 추가
+  var item_no_list = _history.slice(0, 5);
+  if (!item_no_list.includes(item_no_idx)) {
+    item_no_list.push(item_no_idx);
+  }
+
+  var searchHost = ''; //
+  var reco_api_url = '/reco_api';
+  var ajax_url = searchHost + reco_api_url;
+
+  var data = {
+    "item_no": item_no_list
+  };
+
+  fetch(ajax_url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+    .then(response => response.json())
+    .then(data => {
+      var response = data;
+      var recomm_products = [];
+      for (var i = 0; i < response.length; i++) {
+        var item = response[i];
+        recomm_products.push([item.item_no_idx, item.image_name]);
+      }
+      shuffleArray(recomm_products);
+
+      $("#reco_layer").empty();
+      for (var i = 0; i < recomm_products.slice(0, 20).length; i++) {
+        $("#reco_layer").append("<a href='javascript:open_popup(\"" + recomm_products[i][0] + "\", \"" + recomm_products[i][1] + "\")'><img style='width: 15vw; height: 15vw;' src='./commerce_imgs/" + recomm_products[i][1] + ".jpg'></a>");
+      }
+    })
+    .catch(error => console.error(error));
+}
+
+
+function open_popup(item_no, img_url) {
+  var searchHost = ''; //
+  var retrieval_api_url = '/retrieval_api';
+  var ajax_url = searchHost + retrieval_api_url;
+
+  var data = {
+    "item_no": item_no.toString()
+  };
+
+  $("#popup_layer_1").html("<img style='width: 100%;' src='./commerce_imgs/" + image_name + ".jpg'>");
+  $.ajax({
+    url: ajax_url,
+    type: 'POST',
+    data: JSON.stringify(data),
+    contentType: 'application/json',
+    dataType: 'json',
+    async: true,
+    timeout: 100000,
+    beforeSend: function () {
+      console.log("trying... " + ajax_url);
+      $("#popup_layer").empty();
+      $("#popup_layer").append("loading....");
+    },
+    success: function (data) {
+      var response = data;
+      var similar_items = [];
+      for (var i = 0; i < response.hits.hits.length; i++) {
+        var item = response.hits.hits[i];
+        var item_no_idx = item._id;
+        var image_name = item.image_name;
+        similar_items.push([item_no_idx, image_name]);
+      }
+      shuffleArray(similar_items);
+
+      $("#popup_layer").empty();
+      for (var i = 0; i < similar_items.slice(0, 10).length; i++) {
+        var imageSrc = "./commerce_imgs/" + similar_items[i][1] + ".jpg";
+        var imageElement = $('<img>').attr('src', imageSrc);
+        var linkElement = $('<a>').attr('href', '#').append(imageElement);
+        var listItemElement = $('<li>').append(linkElement);
+        $("#popup_layer").append(listItemElement);
+      }
+    },
+    error: function (request, status, error) {
+      alert("code:" + request.status + "\nerror:" + error);
+      var err = JSON.parse(request.responseText);
+      alert(err.resData[0].errorMsg);
+      if (errorFunction != undefined) {
+        errorFunction();
+      }
+    },
+    fail: function () {
+      alert("인터넷 연결 상태를 확인해주세요.");
+    }
+  });
+}
+
+
+
+
+
+
+    </script>
+  </body>
+</html>   
