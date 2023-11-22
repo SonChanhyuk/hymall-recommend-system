@@ -24,6 +24,7 @@ http://mmlab.ie.cuhk.edu.hk/projects/DeepFashion/InShopRetrieval.html
 
 ## 프로젝트 결과
 ![result](./image/web.png)
+https://youtu.be/r5S0Mri6Pjs?si=bZPYx8XneDDK2QSG
 * home : **초기화면**, H버튼을 통해 추천 시스템 테스트 페이지로 들어갈 수 있습니다.
 * main : **추천 시스템 테스트 화면**, 왼쪽에 랜덤으로 선택된 상품의 이미지들을 보여줍니다.
 * reco : **로그기반 추천 결과**, 최대 n개의 최근 선택 기록에 따른 추천 상품들을 보여줍니다. 
